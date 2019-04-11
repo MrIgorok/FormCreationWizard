@@ -18,15 +18,7 @@ import java.util.Map;
  * @author  Igor Klapatnjuk
  */
 public class ResourceLocalizationManager {
-    /**
-     * Map of resources. Each locale has its own ResourceManager.
-     */
-    private static Map<Locale, ResourceManager> resources = new HashMap<>();
-
-    /**
-     * Factory that creates ResourceManager.
-     * @see ResourceManagerFactory
-     */
+    private Map<Locale, ResourceManager> resources = new HashMap<>();
     private ResourceManagerFactory factory;
 
     /**
@@ -40,15 +32,15 @@ public class ResourceLocalizationManager {
     }
 
     /**
-     * Gets ResourceManager for a specific locale.
-     * @param locale locale which ResourceManager will be returned.
-     * @return ResourceManager
+     * Returns the value related to the key and for specific locale.
+     * @param key key which value will be returned.
+     * @return value.
      */
-    public ResourceManager getResourceManager(Locale locale) {
+    public String getValue(String key, Locale locale) {
         if (!resources.containsKey(locale)) {
             resources.put(locale, factory.getResourceManager(locale));
         }
 
-        return resources.get(locale);
+        return resources.get(locale).getValue(key);
     }
 }

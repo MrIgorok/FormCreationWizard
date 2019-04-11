@@ -15,7 +15,6 @@ public interface ResourceManagerFactory {
      * @param locale specified locale.
      * @return ResourceManager.
      * @see ResourceManager
-     * @return ResourceManager.
      */
     ResourceManager getResourceManager(Locale locale);
 }

@@ -10,9 +10,6 @@ import java.util.Locale;
  * @author  Igor Klapatnjuk
  */
 public class PropertyResourceBundleManagerFactory implements ResourceManagerFactory {
-    /**
-     * Resource name.
-     */
     private String resourceName;
 
     /**

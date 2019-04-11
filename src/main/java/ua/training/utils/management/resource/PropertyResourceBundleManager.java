@@ -17,9 +17,6 @@ import java.util.ResourceBundle;
  * @author  Igor Klapatnjuk
  */
 public final class PropertyResourceBundleManager implements ResourceManager {
-    /**
-     * Provides resources.
-     */
     private ResourceBundle resourceBundle;
 
     /**
