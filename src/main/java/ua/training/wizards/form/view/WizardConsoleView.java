@@ -15,7 +15,6 @@ import java.util.Scanner;
  * This class require InputStream and OutputStream that
  * will used for input and output user information.
  *
- * @see WizardView
  * @see OutputStream
  * @see InputStream
  *
