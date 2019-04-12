@@ -1,7 +1,4 @@
-package ua.training.utils.management;
-
-import ua.training.utils.management.resource.ResourceManager;
-import ua.training.utils.management.resource.ResourceManagerFactory;
+package ua.training.utils.management.resource;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -21,6 +18,8 @@ public class ResourceLocalizationManager {
     private Map<Locale, ResourceManager> resources = new HashMap<>();
     private ResourceManagerFactory factory;
 
+    private static final Object mutex = new Object();
+
     /**
      * Creates ResourceLocalizationManager with specific resource name
      * and ResourceManagerFactory.
@@ -32,15 +31,18 @@ public class ResourceLocalizationManager {
     }
 
     /**
-     * Returns the value related to the key and for specific locale.
-     * @param key key which value will be returned.
+     * Returns ResourceManager for specific locale.
+     * Method is thread safe.
+     * @param locale specific locale.
      * @return value.
      */
-    public String getValue(String key, Locale locale) {
+    public ResourceManager getResourceManager(Locale locale) {
         if (!resources.containsKey(locale)) {
-            resources.put(locale, factory.getResourceManager(locale));
+            synchronized (mutex) {
+                resources.put(locale, factory.getResourceManager(locale));
+            }
         }
 
-        return resources.get(locale).getValue(key);
+        return resources.get(locale);
     }
 }

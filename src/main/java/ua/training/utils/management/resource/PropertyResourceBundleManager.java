@@ -1,6 +1,7 @@
 package ua.training.utils.management.resource;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -17,6 +18,7 @@ import java.util.ResourceBundle;
  * @author  Igor Klapatnjuk
  */
 public final class PropertyResourceBundleManager implements ResourceManager {
+
     private ResourceBundle resourceBundle;
 
     /**
@@ -34,7 +36,7 @@ public final class PropertyResourceBundleManager implements ResourceManager {
      * @param resourceName the file name that contains resource.
      * @param locale locale that is used.
      */
-    PropertyResourceBundleManager(final String resourceName, final Locale locale) {
+    public PropertyResourceBundleManager(final String resourceName, final Locale locale) {
         resourceBundle = PropertyResourceBundle.getBundle(resourceName, locale);
     }
 
@@ -51,18 +53,19 @@ public final class PropertyResourceBundleManager implements ResourceManager {
     }
 
     /**
+     * Returns the resource name.
+     * @return resource name.
+     */
+    @Override
+    public String getURIResourceName() {
+        return resourceBundle.getBaseBundleName();
+    }
+
+    /**
      * Returns the locale that uses this resource.
      * @return locale
      */
     public Locale getLocale() {
         return resourceBundle.getLocale();
-    }
-
-    /**
-     * Returns the resource name.
-     * @return resource name.
-     */
-    public String getResourceName() {
-        return resourceBundle.getBaseBundleName();
     }
 }

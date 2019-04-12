@@ -1,6 +1,6 @@
 package ua.training.wizards.form.view;
 
-import ua.training.utils.management.ResourceLocalizationManager;
+import ua.training.utils.management.resource.ResourceLocalizationManager;
 import ua.training.utils.management.resource.PropertyResourceBundleManagerFactory;
 import ua.training.utils.management.resource.ResourceManagerFactory;
 
@@ -44,6 +44,7 @@ public class WizardConsoleView {
         INPUT_SUGGESTION,
         WRONG_INPUT
     }
+
     /**
      * Creates view.
      * @param outputStream output stream that will be used for user input.
