@@ -6,7 +6,7 @@ package ua.training.utils.management.resource;
  * @version 1.0 04 Apr 2019
  * @author  Igor Klapatnjuk
  */
-interface Resource {
+public interface Resource {
     /**
      * Returns the value related to the key.
      * @param key key which value will be returned.

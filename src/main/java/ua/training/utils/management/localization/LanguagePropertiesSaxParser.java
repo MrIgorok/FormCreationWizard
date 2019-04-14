@@ -9,11 +9,12 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.regex.PatternSyntaxException;
 
-public class LanguagePropertiesSaxParsing extends DefaultHandler {
+public class LanguagePropertiesSaxParser extends DefaultHandler {
     private static final String LANGUAGE_PROPERTIES_TAG = "languageProperties";
     private static final String LANGUAGE_TAG = "language";
     private static final String COUNTRY_TAG = "country";
@@ -31,7 +32,7 @@ public class LanguagePropertiesSaxParsing extends DefaultHandler {
     private LanguageProperties languageProperties;
 
 
-    public void parseLanguageProperties(String xmlPropertiesFileName) {
+    void parseLanguageProperties(String xmlPropertiesFileName) {
         languageProperties = new LanguageProperties();
         try {
             File xmlPropertiesDocument = Paths.get(xmlPropertiesFileName).toFile();
@@ -39,6 +40,19 @@ public class LanguagePropertiesSaxParsing extends DefaultHandler {
             SAXParser saxParser = factory.newSAXParser();
 
             saxParser.parse(xmlPropertiesDocument, this);
+        } catch (SAXException | IOException | PatternSyntaxException
+                |ParserConfigurationException e) {
+
+        }
+    }
+
+    void parseLanguageProperties(InputStream xmlPropertiesInputStream) {
+        languageProperties = new LanguageProperties();
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser saxParser = factory.newSAXParser();
+
+            saxParser.parse(xmlPropertiesInputStream, this);
         } catch (SAXException | IOException | PatternSyntaxException
                 |ParserConfigurationException e) {
 
