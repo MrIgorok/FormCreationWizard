@@ -12,7 +12,7 @@ public class PropertyFilesResources implements Resources {
     }
 
     @Override
-    public void addResource(ResourceManagerFactory factory) {
+    public void addResource(ResourceFactory factory) {
 
     }
 }
