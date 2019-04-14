@@ -1,42 +1,41 @@
 package ua.training.utils.management.resource;
 
 import java.util.Locale;
-import java.util.Objects;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 /**
  * This class consists of external resource management methods.
- * The PropertyResourceBundle is used for managing resources.
+ * The PropertiesFileResource is used for managing resources.
  * This class is permanent you can't change it after specified resource file and locale.
  * This class is final so you can't inherit it.
  *
  * @see PropertyResourceBundle
- * @see ResourceManager
+ * @see Resource
  *
  * @version 1.0 08 Apr 2019
  * @author  Igor Klapatnjuk
  */
-public final class PropertyResourceBundleManager implements ResourceManager {
+public final class PropertiesFileResource implements Resource {
 
     private ResourceBundle resourceBundle;
 
     /**
      * Deleted default constructor.
      */
-    private PropertyResourceBundleManager() {
+    private PropertiesFileResource() {
 
     }
 
     /**
-     * Creates PropertyResourceBundleManager.
+     * Creates PropertiesFileResource.
      * Resource file and locale must be specified and can't be null.
      * If one of them is null NullPointerException will be thrown.
      * @see NullPointerException
      * @param resourceName the file name that contains resource.
      * @param locale locale that is used.
      */
-    public PropertyResourceBundleManager(final String resourceName, final Locale locale) {
+    public PropertiesFileResource(final String resourceName, final Locale locale) {
         resourceBundle = PropertyResourceBundle.getBundle(resourceName, locale);
     }
 

@@ -1,8 +1,8 @@
 package ua.training.wizards.form.view;
 
+import ua.training.utils.management.resource.PropertiesFileResourceFactory;
 import ua.training.utils.management.resource.ResourceLocalizationManager;
-import ua.training.utils.management.resource.PropertyResourceBundleManagerFactory;
-import ua.training.utils.management.resource.ResourceManagerFactory;
+import ua.training.utils.management.resource.ResourceFactory;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -56,8 +56,8 @@ public class WizardConsoleView {
         outputWriter = new PrintStream(outputStream);
         inputReader = new Scanner(inputStream);
 
-        ResourceManagerFactory factory =
-                PropertyResourceBundleManagerFactory.getResourceManagerFactory(propertyResourceFileName);
+        ResourceFactory factory =
+                PropertiesFileResourceFactory.getResourceManagerFactory(propertyResourceFileName);
         stringLocalizationManager = new ResourceLocalizationManager(factory);
     }
 

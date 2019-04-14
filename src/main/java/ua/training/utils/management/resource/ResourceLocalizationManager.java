@@ -6,37 +6,37 @@ import java.util.Map;
 
 /**
  * This class controls one resource with different locales.
- * This class contains set of singleton ResourceManager.
- * Each locale is mapping to one ResourceManager.
+ * This class contains set of singleton Resource.
+ * Each locale is mapping to one Resource.
  *
- * @see ResourceManager
- * @see ResourceManagerFactory
+ * @see Resource
+ * @see ResourceFactory
  * @version 1.0 Apr 08 2019
  * @author  Igor Klapatnjuk
  */
 public class ResourceLocalizationManager {
-    private Map<Locale, ResourceManager> resources = new HashMap<>();
-    private ResourceManagerFactory factory;
+    private Map<Locale, Resource> resources = new HashMap<>();
+    private ResourceFactory factory;
 
     private static final Object mutex = new Object();
 
     /**
      * Creates ResourceLocalizationManager with specific resource name
-     * and ResourceManagerFactory.
-     * @see ResourceManagerFactory
-     * @param factory Factory that creates ResourceManager.
+     * and ResourceFactory.
+     * @see ResourceFactory
+     * @param factory Factory that creates Resource.
      */
-    public ResourceLocalizationManager(ResourceManagerFactory factory) {
+    public ResourceLocalizationManager(ResourceFactory factory) {
         this.factory = factory;
     }
 
     /**
-     * Returns ResourceManager for specific locale.
+     * Returns Resource for specific locale.
      * Method is thread safe.
      * @param locale specific locale.
      * @return value.
      */
-    public ResourceManager getResourceManager(Locale locale) {
+    public Resource getResourceManager(Locale locale) {
         if (!resources.containsKey(locale)) {
             synchronized (mutex) {
                 resources.put(locale, factory.getResourceManager(locale));

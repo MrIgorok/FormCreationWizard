@@ -3,18 +3,18 @@ package ua.training.utils.management.resource;
 import java.util.Locale;
 
 /**
- * ResourceManager factory.
- * @see ResourceManager
+ * Resource factory.
+ * @see Resource
  *
  * @version 1.0 08 Apr 2019
  * @author  Igor Klapatnjuk
  */
-public interface ResourceManagerFactory {
+public interface ResourceFactory {
     /**
      * Returns specific resource manager.
      * @param locale specified locale.
-     * @return ResourceManager.
-     * @see ResourceManager
+     * @return Resource.
+     * @see Resource
      */
-    ResourceManager getResourceManager(Locale locale);
+    Resource getResourceManager(Locale locale);
 }
