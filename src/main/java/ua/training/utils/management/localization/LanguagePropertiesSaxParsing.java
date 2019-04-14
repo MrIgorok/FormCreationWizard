@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.regex.PatternSyntaxException;
 
-public class LanguageSaxParsing extends DefaultHandler {
+public class LanguagePropertiesSaxParsing extends DefaultHandler {
     private static final String LANGUAGE_PROPERTIES_TAG = "languageProperties";
     private static final String LANGUAGE_TAG = "language";
     private static final String COUNTRY_TAG = "country";
