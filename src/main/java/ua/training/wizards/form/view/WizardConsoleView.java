@@ -1,8 +1,6 @@
 package ua.training.wizards.form.view;
 
-import ua.training.utils.management.resource.PropertiesFileResourceFactory;
-import ua.training.utils.management.resource.ResourceLocalizationManager;
-import ua.training.utils.management.resource.ResourceFactory;
+import ua.training.utils.management.resource.*;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -24,27 +22,21 @@ import java.util.Scanner;
 public class WizardConsoleView {
     private PrintStream outputWriter;
     private Scanner inputReader;
-    private ResourceLocalizationManager stringLocalizationManager;
-    private Locale resourceLocale;
-
-    public Locale getResourceLocale() {
-        return resourceLocale;
-    }
-
-    public void setResourceLocale(Locale resourceLocale) {
-        this.resourceLocale = resourceLocale;
-    }
+    private Resource dialogValuesResource;
+    private String propertyResourceFileName;
 
     /**
      * Values that require for user interface
      */
     public enum DialogValue {
         WELCOME_MESSAGE,
+        SUPPORTED_LANGUAGES,
         LANGUAGE_CHOSE_SUGGESTION,
+        LANGUAGE_NOT_SUPPORTED,
         INPUT_SUGGESTION,
-        WRONG_INPUT
+        LOGIN_ALREADY_EXIST,
+        WRONG_INPUT;
     }
-
     /**
      * Creates view.
      * @param outputStream output stream that will be used for user input.
@@ -55,10 +47,8 @@ public class WizardConsoleView {
                              InputStream inputStream, String propertyResourceFileName) {
         outputWriter = new PrintStream(outputStream);
         inputReader = new Scanner(inputStream);
-
-        ResourceFactory factory =
-                PropertiesFileResourceFactory.getResourceManagerFactory(propertyResourceFileName);
-        stringLocalizationManager = new ResourceLocalizationManager(factory);
+        this.propertyResourceFileName = propertyResourceFileName;
+        dialogValuesResource = new PropertiesFileResource(propertyResourceFileName, Locale.getDefault());
     }
 
     /**
@@ -66,7 +56,7 @@ public class WizardConsoleView {
      * @param message the message that will be printed
      */
     public void printMessage(String message) {
-        outputWriter.print(message);
+        outputWriter.println(message);
     }
 
     /**
@@ -83,13 +73,17 @@ public class WizardConsoleView {
      * @param formatValueArguments strings that will be used in format
      * @return value associated with {@link DialogValue}
      */
-    private String getDialogValueAndSetFormatValue(DialogValue key, String ... formatValueArguments) {
-        String resourceValue = stringLocalizationManager.getValue(key.name(), resourceLocale);
+    public String getDialogValueAndSetFormatValue(DialogValue key, String ... formatValueArguments) {
+        String resourceValue = dialogValuesResource.getValue(key.name());
 
         if (formatValueArguments.length > 0) {
             resourceValue = String.format(resourceValue, formatValueArguments);
         }
 
         return resourceValue;
+    }
+
+    public void setResourceLocale(Locale resourceLocale) {
+        dialogValuesResource = new PropertiesFileResource(propertyResourceFileName, resourceLocale);
     }
 }

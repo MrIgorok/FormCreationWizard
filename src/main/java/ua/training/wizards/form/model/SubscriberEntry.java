@@ -6,7 +6,6 @@ public class SubscriberEntry {
     private String surname;
     private String firstName;
     private String patronymic;
-    private String fullName;
     private String nickname;
     private String comment;
     private SubscriberGroup group;
@@ -46,14 +45,6 @@ public class SubscriberEntry {
 
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getNickname() {

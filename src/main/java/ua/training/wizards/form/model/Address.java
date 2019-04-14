@@ -15,8 +15,7 @@ public class Address {
 
     }
 
-    public Address(int index, String city, String street,
-                   String houseNumber, int apartmentNumber) {
+    public Address(int index, String city, String street, String houseNumber, int apartmentNumber) {
         this.index = index;
         this.city = city;
         this.street = street;

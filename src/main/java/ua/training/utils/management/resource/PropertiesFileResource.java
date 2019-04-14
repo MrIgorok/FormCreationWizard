@@ -1,5 +1,10 @@
 package ua.training.utils.management.resource;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
@@ -48,7 +53,9 @@ public final class PropertiesFileResource implements Resource {
      */
     @Override
     public String getValue(final String key) {
-        return resourceBundle.getString(key);
+        byte [] bytes = resourceBundle.getString(key).getBytes(StandardCharsets.ISO_8859_1);
+
+        return new String(bytes, StandardCharsets.UTF_8);
     }
 
     /**
