@@ -64,7 +64,7 @@ public class WizardConsoleView {
      * @return the read string.
      */
     public String readString() {
-        return inputReader.next();
+        return inputReader.nextLine();
     }
 
     /**
